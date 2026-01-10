@@ -1,0 +1,9 @@
+Limit  (cost=0.00..3.55 rows=100 width=118) (actual time=0.009..0.024 rows=100 loops=1)
+  Buffers: shared hit=3
+  ->  Seq Scan on yellow_trips_2016_01 yellow_trips  (cost=0.00..386863.95 rows=10905348 width=118) (actual time=0.008..0.017 rows=100 loops=1)
+        Filter: ((tpep_pickup_datetime >= '2016-01-01 00:00:00'::timestamp without time zone) AND (tpep_pickup_datetime < '2016-02-01 00:00:00'::timestamp without time zone))
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=206
+Planning Time: 0.739 ms
+Execution Time: 0.058 ms
