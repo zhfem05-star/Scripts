@@ -2,6 +2,8 @@
 -- scripts 다 작성하면 DB train에 따로 저장
 -- 메모장에 정리하기
 
+
+
 EXPLAIN (ANALYZE, BUFFERS) 
 SELECT * FROM yellow_trips 
 WHERE tpep_pickup_datetime >= '2016-01-01' 
