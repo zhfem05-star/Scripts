@@ -1,0 +1,30 @@
+Limit  (cost=2015091.04..2015102.71 rows=100 width=118) (actual time=6448.358..6462.271 rows=100 loops=1)
+  Buffers: shared hit=115 read=966314
+  ->  Gather Merge  (cost=2015091.04..6609246.96 rows=39375730 width=118) (actual time=6365.661..6379.567 rows=100 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=115 read=966314
+        ->  Sort  (cost=2014091.02..2063310.68 rows=19687865 width=118) (actual time=6346.666..6346.670 rows=67 loops=3)
+              Sort Key: yellow_trips.tpep_pickup_datetime
+              Sort Method: top-N heapsort  Memory: 51kB
+              Buffers: shared hit=115 read=966314
+              Worker 0:  Sort Method: top-N heapsort  Memory: 51kB
+              Worker 1:  Sort Method: top-N heapsort  Memory: 66kB
+              ->  Parallel Append  (cost=0.00..1261634.98 rows=19687865 width=118) (actual time=0.588..5536.709 rows=15749615 loops=3)
+                    Buffers: shared hit=3 read=966314
+                    ->  Parallel Seq Scan on yellow_trips_2015_01 yellow_trips_1  (cost=0.00..312925.79 rows=5312279 width=118) (actual time=0.785..3481.372 rows=12748986 loops=1)
+                          Buffers: shared read=259803
+                    ->  Parallel Seq Scan on yellow_trips_2016_03 yellow_trips_4  (cost=0.00..301066.08 rows=5088008 width=118) (actual time=0.890..3363.116 rows=12210952 loops=1)
+                          Buffers: shared read=250186
+                    ->  Parallel Seq Scan on yellow_trips_2016_02 yellow_trips_3  (cost=0.00..280504.74 rows=4742774 width=118) (actual time=0.406..1457.431 rows=3794016 loops=3)
+                          Buffers: shared read=233077
+                    ->  Parallel Seq Scan on yellow_trips_2016_01 yellow_trips_2  (cost=0.00..268699.04 rows=4544804 width=118) (actual time=0.070..2985.042 rows=10906858 loops=1)
+                          Buffers: shared hit=3 read=223248
+Planning:
+  Buffers: shared hit=203 read=9
+Planning Time: 7.108 ms
+JIT:
+  Functions: 1
+  Options: Inlining true, Optimization true, Expressions true, Deforming true
+  Timing: Generation 0.081 ms, Inlining 49.075 ms, Optimization 10.837 ms, Emission 22.754 ms, Total 82.747 ms
+Execution Time: 6657.848 ms
