@@ -1,0 +1,13 @@
+Limit  (cost=1000.00..281060.95 rows=34 width=118) (actual time=5.341..305.289 rows=7 loops=1)
+  ->  Gather  (cost=1000.00..281060.95 rows=34 width=118) (actual time=0.583..300.530 rows=7 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        ->  Parallel Seq Scan on yellow_trips_2016_01 yellow_trips  (cost=0.00..280057.55 rows=14 width=118) (actual time=185.133..283.409 rows=2 loops=3)
+              Filter: (tpep_pickup_datetime = '2016-01-01 00:00:00'::timestamp without time zone)
+              Rows Removed by Filter: 3635617
+Planning Time: 0.881 ms
+JIT:
+  Functions: 7
+  Options: Inlining false, Optimization false, Expressions true, Deforming true
+  Timing: Generation 0.526 ms, Inlining 0.000 ms, Optimization 1.152 ms, Emission 7.694 ms, Total 9.372 ms
+Execution Time: 324.095 ms
