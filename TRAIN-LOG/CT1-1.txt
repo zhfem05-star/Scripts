@@ -1,0 +1,20 @@
+1. SQL의 기본 논리
+(1) 다음과 같은 순서로 돌아감
+ 1) FROM
+ 2) WHERE
+ 3) GROUP BY
+ 4) HAVING
+ 5) SELECT
+ 6) ORDER BY
+(2) 즉 FROM에서 테이블을 선정하고 WHERE로 필터링, 그 다음에 GROUP BY, HAVING을 거침
+(3) 필자는 이 FROM과 WHERE에서 이미 레코드가 테이블에 나타난다고 이해하고 여기서 추가적으로 위와 같은 순서로 작업한다고 논리적으로 이해
+(4) 코드테스트 예제를 보면
+FROM ITEM_INFO AS II
+    JOIN ITEM_TREE AS IT ON II.ITEM_ID = IT.ITEM_ID
+    JOIN ITEM_INFO AS P ON P.ITEM_ID = IT.PARENT_ITEM_ID
+WHERE P.RARITY = 'RARE'
+위와 같이 되어있는데 우선 해당 테이블에서 조인으로 다른 테이블을 가져오지만
+그 이전에 JOIN으로 또 다른 테이블을 가져오는 방식을 사용
+즉 P.RARITY가 'RARE'인 레코드만 있는 테이블에서
+P.ITEM_ID 값과 같은 IT.PARENT_ITEM_ID 레코드들을 테이블로 갖고 오고 (부모가 레어만 남음),
+부모가 레어만 남은 IT 테이블 중에서 II.ITEM_ID와 같은 애들로 데려오기
