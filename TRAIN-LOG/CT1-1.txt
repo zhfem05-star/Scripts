@@ -18,3 +18,4 @@ WHERE P.RARITY = 'RARE'
 즉 P.RARITY가 'RARE'인 레코드만 있는 테이블에서
 P.ITEM_ID 값과 같은 IT.PARENT_ITEM_ID 레코드들을 테이블로 갖고 오고 (부모가 레어만 남음),
 부모가 레어만 남은 IT 테이블 중에서 II.ITEM_ID와 같은 애들로 데려오기
+(5) 따라서 JOIN은 먼저 있는 것이 아닌 나중에 쓴 것이 먼저 작동됨
